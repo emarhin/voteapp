@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+
+<div class="card text-center">
+  <div class="card-body">
+    <h1>Welcome To GMA AWARDS</h1>
+    <p>Vote for your contestant.</p>
+    <a class="btn btn-dark" href="{% url 'polls:index' %}">
+      View Available Contests</a
+    >
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% load static %}
+
+<nav class="navbar navbar-light bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" style="color: white" href="/"
+      ><img height="50" width="" src="{% static 'img/ghaa.jpeg' %}" />
+      GMAAWARDS</a
+    >
+
+    {% if user.is_authenticated %}
+
+    <a
+      href="{% url 'dashboard:logout' %}"
+      type="button"
+      class="btn btn-warning"
+    >
+      Logout
+    </a>
+
+    {% else %}{% endif %}
+  </div>
+</nav>

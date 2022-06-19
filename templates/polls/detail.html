@@ -1,0 +1,127 @@
+{% extends 'base.html' %} {% block content %}
+<a class="btn btn-secondary btn-sm mb-3" href="{% url 'polls:index' %}"
+  >Back To Polls</a
+>
+<h1 class="text-center mb-3">{{ question.question_text }}</h1>
+
+{% if error_message %}
+<p class="alert alert-danger">
+  <strong>{{ error_message }}</strong>
+</p>
+{% endif %}
+
+<form
+  id="paymentForm"
+  action="{% url 'polls:vote' question.id %}"
+  method="post"
+>
+  {% csrf_token %}
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Enter your Details to pay
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Email address</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="exampleFormControlInput1"
+              name="email"
+              placeholder="Enter your Email name@example.com"
+              required
+            />
+            <label for="exampleFormControlInput2" class="form-label"
+              >Full name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="fullName"
+              id="exampleFormControlInput2"
+              placeholder="Enter Your Full Name"
+              required
+            />
+            <label for="exampleFormControlInput3" class="form-label"
+              >Amount To pay</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              name="amount"
+              id="exampleFormControlInput3"
+              placeholder="Enter Your Amount to vote"
+              required
+            />
+
+            <label for="exampleFormControlInput4" class="form-label"
+              >Phone Number</label
+            >
+
+            <input
+              type="decimal"
+              class="form-control"
+              name="phonenumber"
+              id="exampleFormControlInput4"
+              placeholder="Enter Your Phone Number"
+              required
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">Pay Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% for choice in question.choice_set.all %}
+  <div class="form-check">
+    <input
+      type="radio"
+      name="choice"
+      class="form-check-input"
+      id="choice{{ forloop.counter }}"
+      value="{{ choice.id }}"
+    />
+    <label for="choice{{ forloop.counter }}"
+      >{{ choice.choice_text.Name }}</label
+    >
+  </div>
+  {% endfor %}
+  <input
+    value="Vote"
+    class="btn btn-success btn-lg btn-block mt-4"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  />
+</form>
+
+{% endblock %}

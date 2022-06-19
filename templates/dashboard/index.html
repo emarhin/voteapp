@@ -1,0 +1,82 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+
+<div class="text-center">
+  <div class="card-body">
+    <h1>Home Dashboard</h1>
+  </div>
+
+  <div class="row">
+    <div class="col" style="padding-top: 50px">
+      <div
+        class="card"
+        style="width: 18rem; background-color: DodgerBlue; color: white"
+      >
+        <div class="card-body">
+          <h5 class="card-title">Amount Made</h5>
+          <p class="card-text">{{moneyVotes.total_amount}}</p>
+          <a
+            href="#"
+            style="text-decoration: none; color: white"
+            class="card-link"
+          ></a>
+        </div>
+      </div>
+    </div>
+    <div class="col" style="padding-top: 50px">
+      <div
+        class="card"
+        style="width: 18rem; background-color: SlateBlue; color: white"
+      >
+        <div class="card-body">
+          <h5 class="card-title">Total people who Voted</h5>
+          <p class="card-text">{{moneyVotes.total_votes}}</p>
+
+          <a
+            href="#"
+            style="text-decoration: none; color: white"
+            class="card-link"
+          ></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col" style="padding-top: 50px">
+      <div
+        class="card"
+        style="width: 18rem; background-color: Violet; color: white"
+      >
+        <div class="card-body">
+          <h5 class="card-title">Contestant</h5>
+
+          <p class="card-text">{{totalQC.total_contestants}}</p>
+          <a
+            href="{% url 'dashboard:contestants' %}"
+            style="text-decoration: none; color: white"
+            class="card-link"
+            >view</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="col" style="padding-top: 50px">
+      <div
+        class="card"
+        style="width: 18rem; background-color: Orange; color: white"
+      >
+        <div class="card-body">
+          <h5 class="card-title">Categories</h5>
+          <p class="card-text">{{totalQC.total_questions}}</p>
+          <a
+            href="{% url 'dashboard:questions' %}"
+            style="text-decoration: none; color: white"
+            class="card-link"
+            >view</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %} x
+</div>
